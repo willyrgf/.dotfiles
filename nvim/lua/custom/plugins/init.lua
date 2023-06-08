@@ -1,5 +1,16 @@
--- You can add your own plugins here or in other files in this directory!
---  I promise not to create any merge conflicts in this directory :)
---
--- See the kickstart.nvim README for more information
-return {}
+-- general plugins
+return {
+	-- undo tree to lookup history
+	{ 'mbbill/undotree' },
+
+	-- Comments
+	{
+		"numToStr/Comment.nvim",
+		config = function()
+			require("Comment").setup()
+		end,
+		keys = { { "gc", mode = { "n", "v" } }, { "gb", mode = { "n", "v" } } },
+		event = "User FileOpened",
+		enabled = true
+	},
+}
