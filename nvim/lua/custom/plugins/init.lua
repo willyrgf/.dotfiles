@@ -13,4 +13,7 @@ return {
 		event = "User FileOpened",
 		enabled = true
 	},
+
+	-- Blame on line
+	{ "lewis6991/gitsigns.nvim" },
 }
