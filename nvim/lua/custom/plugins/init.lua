@@ -1,5 +1,8 @@
 -- general plugins
 return {
+	--multi cursors plugin --
+	{'mg979/vim-visual-multi'},
+
 	-- undo tree to lookup history
 	{ 'mbbill/undotree' },
 
