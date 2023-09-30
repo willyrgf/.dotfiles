@@ -1,11 +1,14 @@
 font:
-  size: 20 
+  size: 19
   offset:
     y: 16
   glyph_offset:
     y: 9
   normal:
-     family: "Hack Nerd Font"
+    family: "Hack Nerd Font"
+    #style: Bold
+    #family: Fira Mono
+    #style: Medium
 window:
   padding:
     x: 5
