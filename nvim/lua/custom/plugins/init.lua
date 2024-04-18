@@ -1,12 +1,15 @@
 -- general plugins
 return {
-	--multi cursors plugin --
+	-- a neovim lib for async
+	{ "nvim-neotest/nvim-nio" },
+
+	-- multi cursors plugin
 	{ 'mg979/vim-visual-multi' },
 
 	-- undo tree to lookup history
 	{ 'mbbill/undotree' },
 
-	-- Comments
+	-- comments
 	{
 		"numToStr/Comment.nvim",
 		config = function()
@@ -17,16 +20,12 @@ return {
 		enabled = true
 	},
 
-	-- Blame on line
+	-- blame on line
 	{ "lewis6991/gitsigns.nvim" },
 
+	-- todo comments highlight
 	{
 		"folke/todo-comments.nvim",
 		dependencies = { "nvim-lua/plenary.nvim" },
-		opts = {
-			-- your configuration comes here
-			-- or leave it empty to use the default settings
-			-- refer to the configuration section below
-		}
-	}
+	},
 }
