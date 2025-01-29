@@ -77,12 +77,17 @@ return {
 				if vim.fn.executable(executable) == 1 then
 					local scene = args.args or "project.godot"
 
-					-- Notify the user that Godot is starting
-					vim.notify("Running Godot with scene: " .. scene, vim.log.levels.INFO)
-
 					-- Create a buffer for logs
 					local buf = vim.api.nvim_create_buf(false, true)
 					vim.api.nvim_buf_set_option(buf, "bufhidden", "wipe")
+
+					-- Add close window keybinding
+					vim.api.nvim_buf_set_keymap(buf, 'n', 'q', '<cmd>close<CR>', {
+						noremap = true,
+						silent = true,
+						nowait = true,
+						desc = "Close Godot log window"
+					})
 
 					-- Open the floating window
 					local win = vim.api.nvim_open_win(buf, true, {
@@ -116,10 +121,11 @@ return {
 						on_exit = function(_, code)
 							if code == 0 then
 								vim.api.nvim_buf_set_lines(buf, -1, -1, false,
-									{ "[INFO] Godot ran successfully." })
+									{ "[INFO] Godot exited successfully. Press 'q' to close." })
 							else
 								vim.api.nvim_buf_set_lines(buf, -1, -1, false,
-									{ "[ERROR] Godot exited with code: " .. code })
+									{ "[ERROR] Godot exited with code: " ..
+									code .. ". Press 'q' to close." })
 							end
 							vim.api.nvim_win_set_cursor(win,
 								{ #vim.api.nvim_buf_get_lines(buf, 0, -1, false), 0 }) -- Final scroll
