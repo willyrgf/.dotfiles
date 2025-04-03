@@ -1,4 +1,5 @@
-require("custom.set")
-require("custom.remaps")
-require("custom.treesitter")
-require("custom.lualine")
+local M = {}
+
+require 'custom.options'
+
+return M
