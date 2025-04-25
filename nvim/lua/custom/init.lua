@@ -1,5 +1,5 @@
 local M = {}
 
-require 'custom.options'
+require("custom.options")
 
 return M
