@@ -4,12 +4,15 @@
 local get_avante_opts = function()
 	if vim.g.avante_enabled == true then
 		return {
-			provider = "openai",
-			openai = {
-				endpoint = "https://openrouter.ai/api/v1",
-				model = "google/gemini-2.5-pro-exp-03-25:free",
-				timeout = 30000,
-				temperature = 0.3,
+			provider = "openrouter",
+			vendors = {
+				openrouter = {
+					__inherited_from = "openai",
+					endpoint = "https://openrouter.ai/api/v1",
+					model = "openai/o4-mini-high",
+					timeout = 30000,
+					temperature = 0.3,
+				},
 			},
 		}
 	end
