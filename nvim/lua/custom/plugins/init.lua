@@ -11,6 +11,34 @@ return {
 	},
 
 	--- overrides
+	---
+	-- telescope
+	{
+		"nvim-telescope/telescope.nvim",
+		keys = {
+			{
+				"<leader>sf",
+				function()
+					require("telescope.builtin").find_files({
+						hidden = true,
+						follow = true,
+					})
+				end,
+				desc = "[S]earch [F]iles",
+			},
+			{
+				"<leader>sg",
+				function()
+					require("telescope.builtin").live_grep({
+						additional_args = function()
+							return { "--hidden", "--glob", "!**/.git/*" }
+						end,
+					})
+				end,
+				desc = "[S]earch by [G]rep",
+			},
+		},
+	},
 	-- treesitter
 	{
 		"nvim-treesitter",
@@ -87,4 +115,9 @@ return {
 			},
 		},
 	},
+
+	-- git conflict inline
+	{ "akinsho/git-conflict.nvim", version = "*", config = true },
+
+	{ "tpope/vim-fugitive" },
 }
