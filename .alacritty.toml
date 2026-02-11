@@ -8,6 +8,10 @@ blinking = "Never"
 [env]
 TERM = "xterm-256color"
 
+[terminal.shell]
+program = "/bin/zsh"
+args = ["-l"]
+
 [font]
 size = 17
 
