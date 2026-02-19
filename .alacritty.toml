@@ -79,10 +79,8 @@ history = 10000
 decorations = "buttonless"
 opacity = 0.95
 startup_mode = "Maximized"
-
-[window.padding]
-x = 5
-y = 5
+dynamic_padding = true
+resize_increments = true
 
 [general]
 # https://github.com/alacritty/alacritty-theme
