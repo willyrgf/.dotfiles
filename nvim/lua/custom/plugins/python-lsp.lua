@@ -42,8 +42,6 @@ return {
 				end,
 			}
 
-			-- Add this for Nix LSP
-			servers.nil_ls = {}
 			opts.servers = servers
 			return opts
 		end,

@@ -681,7 +681,10 @@ require("lazy").setup({
 			--  - capabilities (table): Override fields in capabilities. Can be used to disable certain LSP features.
 			--  - settings (table): Override the default settings passed when initializing the server.
 			--        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
-			local servers = {
+			-- Servers managed externally (e.g. via Nix) — configured via vim.lsp API in custom plugins
+				local external_servers = {}
+
+				local servers = {
 				-- clangd = {},
 				-- gopls = {},
 				-- pyright = {},
@@ -694,6 +697,8 @@ require("lazy").setup({
 				-- But for many setups, the LSP (`ts_ls`) will work just fine
 				-- ts_ls = {},
 				--
+
+				rust_analyzer = {},
 
 				lua_ls = {
 					-- cmd = { ... },
@@ -744,6 +749,12 @@ require("lazy").setup({
 					end,
 				},
 			})
+
+			for server_name, server in pairs(external_servers) do
+				server.capabilities = vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
+				vim.lsp.config(server_name, server)
+				vim.lsp.enable(server_name)
+			end
 		end,
 	},
 
@@ -957,10 +968,10 @@ require("lazy").setup({
 	{ -- Highlight, edit, and navigate code
 		"nvim-treesitter/nvim-treesitter",
 		lazy = false, -- required by nvim-treesitter v1
-		build = ":TSInstall! lua vim vimdoc query markdown markdown_inline",
+		build = ":TSInstall! lua vim vimdoc query markdown markdown_inline nix rust",
 		config = function()
 			require("nvim-treesitter").setup({
-				ensure_installed = { "lua", "vim", "vimdoc", "query", "markdown", "markdown_inline" },
+				ensure_installed = { "lua", "vim", "vimdoc", "query", "markdown", "markdown_inline", "nix", "rust" },
 				auto_install = true,
 			})
 		end,
