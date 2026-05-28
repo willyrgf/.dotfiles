@@ -11,7 +11,6 @@ return {
 	},
 
 	--- overrides
-	---
 	-- telescope
 	{
 		"nvim-telescope/telescope.nvim",
@@ -38,30 +37,6 @@ return {
 				desc = "[S]earch by [G]rep",
 			},
 		},
-	},
-	-- treesitter
-	{
-		"nvim-treesitter",
-		opts = function(_, opts)
-			opts.ensure_installed = opts.ensure_installed or {}
-			vim.list_extend(opts.ensure_installed, {
-				"gdscript",
-				"godot_resource",
-				"gdshader",
-			})
-
-			opts.incremental_selection = {
-				enable = true,
-				keymaps = {
-					init_selection = "<CR>",
-					node_incremental = "<CR>",
-					node_decremental = "<BS>",
-					scope_incremental = "<TAB>",
-				},
-			}
-
-			return opts
-		end,
 	},
 
 	--- utilities
