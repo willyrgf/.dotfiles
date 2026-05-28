@@ -957,9 +957,12 @@ require("lazy").setup({
 	{ -- Highlight, edit, and navigate code
 		"nvim-treesitter/nvim-treesitter",
 		lazy = false, -- required by nvim-treesitter v1
-		build = ":TSUpdate",
+		build = ":TSInstall! lua vim vimdoc query markdown markdown_inline",
 		config = function()
-			require("nvim-treesitter").setup({})
+			require("nvim-treesitter").setup({
+				ensure_installed = { "lua", "vim", "vimdoc", "query", "markdown", "markdown_inline" },
+				auto_install = true,
+			})
 		end,
 		-- There are additional nvim-treesitter modules that you can use to interact
 		-- with nvim-treesitter. You should go explore a few and see what interests you:
